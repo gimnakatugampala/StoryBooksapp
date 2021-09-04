@@ -17,6 +17,13 @@ router.get('/auth/google/callback',
     res.redirect('/dashboard');
   });
 
+  // @desc Logout
+  // @route /auth/logout
+  router.get('/auth/logout',(req,res) =>{
+    req.logout()
+    res.redirect('/')
+  })
+
 
 
 

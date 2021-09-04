@@ -12,7 +12,7 @@ router.get('/',(req,res) =>{
 // @desc Dashboard
 // @route  GET /dashbaord
 router.get('/dashboard',(req,res) =>{
-    res.send('dashbaord')
+    res.render('dashboard')
 })
 
 module.exports = router
