@@ -28,10 +28,10 @@ app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 
 // Handlebars Helpers
-const {formatData,truncate,stripTags } = require('./helpers/hbs')
+const {formatData,truncate,stripTags,editIcon } = require('./helpers/hbs')
 
 // Handlebars
-app.engine('.hbs', exphbs({helpers:{formatData,truncate,stripTags},defaultLayout:'main',extname: '.hbs'}));
+app.engine('.hbs', exphbs({helpers:{formatData,truncate,stripTags,editIcon},defaultLayout:'main',extname: '.hbs'}));
 
 // Sessions
 app.use(session({
@@ -44,6 +44,13 @@ app.use(session({
 // Passport Middleware
 app.use(passport.initialize())
 app.use(passport.session())
+
+//   Set Global Variables
+app.use(function(req,res,next){
+    res.locals.user = req.user || null
+    next()
+})
+
 
 app.set('view engine', '.hbs');
 
