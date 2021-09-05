@@ -27,8 +27,11 @@ app.use(morgan('dev'))
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 
+// Handlebars Helpers
+const {formatData } = require('./helpers/hbs')
+
 // Handlebars
-app.engine('.hbs', exphbs({defaultLayout:'main',extname: '.hbs'}));
+app.engine('.hbs', exphbs({helpers:{formatData},defaultLayout:'main',extname: '.hbs'}));
 
 // Sessions
 app.use(session({
