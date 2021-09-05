@@ -28,10 +28,10 @@ app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 
 // Handlebars Helpers
-const {formatData } = require('./helpers/hbs')
+const {formatData,truncate,stripTags } = require('./helpers/hbs')
 
 // Handlebars
-app.engine('.hbs', exphbs({helpers:{formatData},defaultLayout:'main',extname: '.hbs'}));
+app.engine('.hbs', exphbs({helpers:{formatData,truncate,stripTags},defaultLayout:'main',extname: '.hbs'}));
 
 // Sessions
 app.use(session({
