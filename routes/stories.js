@@ -124,6 +124,26 @@ router.get('/:id',ensureAuth,async (req,res) =>{
     }
 })
 
+// @desc User Stories
+// @route  GET /stories/user/:UserId
+router.get('/user/:UserId',ensureAuth,async (req,res) =>{
+    try {
+        const stories = await Story.find({
+            user:req.params.UserId,
+            status:'public'
+        })
+        .populate('user')
+        .lean()
+
+        res.render('stories/index',{
+            stories
+        })
+        
+    } catch (err) {
+        console.err(err)
+        res.render('error/500')
+    }
+})
 
 
 
