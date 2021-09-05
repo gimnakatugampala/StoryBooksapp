@@ -22,6 +22,11 @@ const app = express()
 
 app.use(morgan('dev'))
 
+
+// Body parser
+app.use(express.urlencoded({extended:false}))
+app.use(express.json())
+
 // Handlebars
 app.engine('.hbs', exphbs({defaultLayout:'main',extname: '.hbs'}));
 
